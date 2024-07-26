@@ -44,26 +44,18 @@ export default function Navigation() {
           <DropdownMenuContent>
             <DropdownMenuLabel>Lista aplikacji</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href="/apps/bmi" className="navitem">
-                Kalkulator BMI
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/apps/calories" className="navitem">
-                Kalkulator Kalorii
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/apps/water" className="navitem">
-                Zapotrzebowanie wody
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/apps/whr" className="navitem">
-                Kalkulator WHR
-              </Link>
-            </DropdownMenuItem>
+            <Link href="/apps/bmi" className="navitem">
+              <DropdownMenuItem>Kalkulator BMI</DropdownMenuItem>
+            </Link>
+            <Link href="/apps/calories" className="navitem">
+              <DropdownMenuItem>Kalkulator Kalorii</DropdownMenuItem>
+            </Link>
+            <Link href="/apps/water" className="navitem">
+              <DropdownMenuItem>Zapotrzebowanie wody</DropdownMenuItem>
+            </Link>
+            <Link href="/apps/whr" className="navitem">
+              <DropdownMenuItem>Kalkulator WHR</DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

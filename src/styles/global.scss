@@ -63,12 +63,17 @@
   * {
     @apply box-border border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
 @layer components {
+  .navitem {
+    cursor: pointer !important;
+  }
+
   .formfield {
     @apply my-[20px] flex flex-col gap-[10px];
   }

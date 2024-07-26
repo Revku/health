@@ -35,7 +35,7 @@ export default function BMIApp() {
   };
 
   return (
-    <div className="flex h-full items-center justify-center">
+    <div className="h-full">
       <Card className="w-full py-3">
         <CardHeader>
           <CardTitle className="text-xl">Kalkulator BMI</CardTitle>
