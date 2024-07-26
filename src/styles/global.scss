@@ -67,3 +67,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .navitem {
+    // @apply rounded-md bg-zinc-900 px-[10px] py-[6px] font-medium transition-colors duration-200 hover:bg-blue-700 lg:bg-transparent;
+  }
+}
