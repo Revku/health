@@ -61,7 +61,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply box-border border-border;
   }
   body {
     @apply bg-background text-foreground;
@@ -71,5 +71,15 @@
 @layer components {
   .navitem {
     // @apply rounded-md bg-zinc-900 px-[10px] py-[6px] font-medium transition-colors duration-200 hover:bg-blue-700 lg:bg-transparent;
+  }
+
+  .formfield {
+    @apply my-[15px];
+  }
+
+  .contentGrid {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
   }
 }

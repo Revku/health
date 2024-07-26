@@ -1,10 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 
 import logo from "@/assets/logo-text.svg";
 import Link from "next/link";
 
-import { TokensIcon } from "@radix-ui/react-icons";
+import { HomeIcon, TokensIcon } from "@radix-ui/react-icons";
 
 import {
   DropdownMenu,
@@ -14,49 +16,56 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "./ui/button";
+import ThemeSwitcher from "./theme-switcher";
 
 export default function Navigation() {
   return (
-    <div className="flex w-full flex-row items-center justify-between p-[30px]">
-      <Image src={logo} alt="logo" />
+    <div className="flex w-full flex-row items-center justify-between py-[30px]">
+      <Link href="/">
+        <Image src={logo} alt="logo" className="w-[130px]" />
+      </Link>
+      <div className="flex gap-[10px]">
+        <Link href="/">
+          <Button variant="outline" size="icon">
+            <HomeIcon className="h-4 w-4" />
+          </Button>
+        </Link>
 
-      <div className="mt-[30px] flex flex-col gap-[15px] text-center lg:mt-0 lg:flex-row" />
+        <ThemeSwitcher />
 
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <div
-            aria-label="Lista aplikacji"
-            className="flex h-[35px] w-[35px] items-center justify-center rounded-sm bg-zinc-900"
-          >
-            <TokensIcon className="h-[20px] w-[20px]" />
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>Lista aplikacji</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href="/apps/bmi" className="navitem">
-              Kalkulator BMI
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            {" "}
-            <Link href="/apps/calories" className="navitem">
-              Kalkulator Kalorii
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/apps/water" className="navitem">
-              Zapotrzebowanie wody
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/apps/whr" className="navitem">
-              Kalkulator WHR
-            </Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="icon">
+              <TokensIcon className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>Lista aplikacji</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link href="/apps/bmi" className="navitem">
+                Kalkulator BMI
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/apps/calories" className="navitem">
+                Kalkulator Kalorii
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/apps/water" className="navitem">
+                Zapotrzebowanie wody
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/apps/whr" className="navitem">
+                Kalkulator WHR
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </div>
   );
 }
