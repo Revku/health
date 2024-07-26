@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import apps from "@/config/apps";
 import { Button } from "./ui/button";
 import ThemeSwitcher from "./theme-switcher";
 
@@ -24,7 +25,7 @@ export default function Navigation() {
     <div className="flex w-full flex-row items-center justify-between py-[30px]">
       <Link href="/" className="flex items-center gap-[15px]">
         <Image src={logo} alt="logo" className="w-[40px]" />
-        <p className="hidden text-xl font-semibold md:block">HEALTH 2.0</p>
+        <p className="hidden text-xl font-semibold md:block">HEALTH</p>
       </Link>
       <div className="flex gap-[10px]">
         <Link href="/">
@@ -44,18 +45,15 @@ export default function Navigation() {
           <DropdownMenuContent>
             <DropdownMenuLabel>Lista aplikacji</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Link href="/apps/bmi" className="navitem">
-              <DropdownMenuItem>Kalkulator BMI</DropdownMenuItem>
-            </Link>
-            <Link href="/apps/calories" className="navitem">
-              <DropdownMenuItem>Kalkulator Kalorii</DropdownMenuItem>
-            </Link>
-            <Link href="/apps/water" className="navitem">
-              <DropdownMenuItem>Zapotrzebowanie wody</DropdownMenuItem>
-            </Link>
-            <Link href="/apps/whr" className="navitem">
-              <DropdownMenuItem>Kalkulator WHR</DropdownMenuItem>
-            </Link>
+
+            {apps?.map((app) => (
+              <Link href={`/apps/${app.slug}`} className="navitem" key={app.name}>
+                <DropdownMenuItem className="flex gap-[10px]">
+                  <Image src={app.icon} className="w-[15px]" alt={app.name} />
+                  {app.name}
+                </DropdownMenuItem>
+              </Link>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

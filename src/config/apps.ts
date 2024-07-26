@@ -2,6 +2,7 @@ import bmi from "@/assets/icons/bmi.svg";
 import calories from "@/assets/icons/calories.svg";
 import water from "@/assets/icons/water.svg";
 import whr from "@/assets/icons/whr.svg";
+import sleep from "@/assets/icons/sleep.svg";
 
 const apps = [
   {
@@ -9,6 +10,12 @@ const apps = [
     slug: "bmi",
     description: "Oblicz swoje BMI, aby dowiedzieć się, czy Twoja waga jest prawidłowa.",
     icon: bmi,
+  },
+  {
+    name: "Kalkulator cykli snu",
+    slug: "sleep",
+    description: "Oblicz optymalny czas, aby obudzić się wypoczętym i pełnym energii.",
+    icon: sleep,
   },
   {
     name: "Kalkulator Kalorii",
