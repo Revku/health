@@ -36,6 +36,44 @@ export default function CaloriesApp() {
       return;
     }
 
+    if (
+      Number.isNaN(parseInt(weight, 10)) ||
+      parseInt(weight, 10) <= 0 ||
+      parseInt(weight, 10) > 500
+    ) {
+      setMessage({
+        type: "error",
+        title: "Nie można obliczyć zapotrzebowania",
+        message: "Waga musi być liczbą większą od zera i mniejszą niż 500!",
+      });
+
+      return;
+    }
+
+    if (
+      Number.isNaN(parseInt(height, 10)) ||
+      parseInt(height, 10) <= 0 ||
+      parseInt(height, 10) > 250
+    ) {
+      setMessage({
+        type: "error",
+        title: "Nie można obliczyć zapotrzebowania",
+        message: "Wzrost musi być liczbą większą od zera i mniejszą niż 250!",
+      });
+
+      return;
+    }
+
+    if (Number.isNaN(parseInt(age, 10)) || parseInt(age, 10) <= 0 || parseInt(age, 10) > 120) {
+      setMessage({
+        type: "error",
+        title: "Nie można obliczyć zapotrzebowania",
+        message: "Wiek musi być liczbą większą od zera i mniejszą niż 120!",
+      });
+
+      return;
+    }
+
     if (gender === "male") {
       const bmr =
         88.362 +
@@ -125,7 +163,10 @@ export default function CaloriesApp() {
             </Select>
           </div>
 
-          <Button className="mt-[30px]" onClick={handleSubmit}>
+          <Button
+            className="mt-[30px] bg-blue-500 text-white hover:bg-blue-400"
+            onClick={handleSubmit}
+          >
             Oblicz zapotrzebowanie
           </Button>
 

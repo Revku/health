@@ -30,27 +30,43 @@ export default function WHRApp() {
         title: "Nie można obliczyć WHR",
         message: "Wszystkie pola są wymagane!",
       });
-
       return;
     }
 
-    if (gender === "male") {
-      const whr = (parseInt(waist, 10) / parseInt(hip, 10)).toFixed(2);
-
+    if (Number.isNaN(parseFloat(waist)) || parseFloat(waist) <= 0 || parseFloat(waist) > 500) {
       setMessage({
-        type: "success",
-        title: "Obliczono WHR",
-        message: `Twój współczynnik talia-biodra wynosi: ${whr}. Jest to typ ${parseFloat(whr) < 0.9 ? "gruszki" : "jabłka"}.`,
+        type: "error",
+        title: "Nie można obliczyć WHR",
+        message: "Obwód talii musi być liczbą większą od zera i mniejszą niż 500!",
       });
-    } else {
-      const whr = (parseInt(hip, 10) / parseInt(waist, 10)).toFixed(2);
-
-      setMessage({
-        type: "success",
-        title: "Obliczono WHR",
-        message: `Twój współczynnik talia-biodra wynosi: ${whr}. Jest to typ ${parseFloat(whr) < 0.8 ? "gruszki" : "jabłka"}.`,
-      });
+      return;
     }
+
+    if (Number.isNaN(parseFloat(hip)) || parseFloat(hip) <= 0 || parseFloat(hip) > 500) {
+      setMessage({
+        type: "error",
+        title: "Nie można obliczyć WHR",
+        message: "Obwód bioder musi być liczbą większą od zera i mniejszą niż 500!",
+      });
+      return;
+    }
+
+    const waistValue = parseFloat(waist);
+    const hipValue = parseFloat(hip);
+    const whr = (waistValue / hipValue).toFixed(2);
+
+    let bodyType;
+    if (gender === "male") {
+      bodyType = parseFloat(whr) < 0.9 ? "gruszki" : "jabłka";
+    } else {
+      bodyType = parseFloat(whr) < 0.8 ? "gruszki" : "jabłka";
+    }
+
+    setMessage({
+      type: "success",
+      title: "Obliczono WHR",
+      message: `Twój współczynnik talia-biodra wynosi: ${whr}. Jest to typ ${bodyType}.`,
+    });
   };
 
   return (
@@ -97,7 +113,10 @@ export default function WHRApp() {
             />
           </div>
 
-          <Button className="mt-[30px]" onClick={handleSubmit}>
+          <Button
+            className="mt-[30px] bg-blue-500 text-white hover:bg-blue-400"
+            onClick={handleSubmit}
+          >
             Oblicz WHR
           </Button>
 

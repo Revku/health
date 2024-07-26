@@ -18,19 +18,46 @@ export default function BMIApp() {
     if (!weight || !height) {
       setMessage({
         type: "error",
-        title: "Nie można oblliczyć BMI",
+        title: "Nie można obliczyć BMI",
         message: "Waga i wzrost są wymagane!",
       });
-
       return;
     }
 
-    const bmi = (parseInt(weight, 10) / (parseInt(height, 10) / 100) ** 2).toFixed(2);
+    const weightValue = parseFloat(weight);
+    const heightValue = parseFloat(height);
+
+    if (
+      Number.isNaN(weightValue) ||
+      weightValue <= 0 ||
+      Number.isNaN(heightValue) ||
+      heightValue <= 0
+    ) {
+      setMessage({
+        type: "error",
+        title: "Nie można obliczyć BMI",
+        message: "Waga i wzrost muszą być liczbami większymi od zera!",
+      });
+      return;
+    }
+
+    const bmi = (weightValue / (heightValue / 100) ** 2).toFixed(2);
+    let bodyStatus = "";
+
+    if (parseFloat(bmi) < 18.5) {
+      bodyStatus = "niedowaga";
+    } else if (parseFloat(bmi) < 24.9) {
+      bodyStatus = "prawidłowa waga";
+    } else if (parseFloat(bmi) < 29.9) {
+      bodyStatus = "nadwaga";
+    } else {
+      bodyStatus = "otyłość";
+    }
 
     setMessage({
       type: "success",
       title: "Obliczono BMI",
-      message: `Twoje BMI wynosi: ${bmi}`,
+      message: `Twoje BMI wynosi: ${bmi}. Jest to ${bodyStatus}.`,
     });
   };
 
@@ -57,7 +84,10 @@ export default function BMIApp() {
             <Label>Waga</Label>
             <Input placeholder="Waga" value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
-          <Button className="mt-[30px]" onClick={handleSubmit}>
+          <Button
+            className="mt-[30px] bg-blue-500 text-white hover:bg-blue-400"
+            onClick={handleSubmit}
+          >
             Oblicz BMI
           </Button>
 

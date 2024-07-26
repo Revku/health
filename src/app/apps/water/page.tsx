@@ -20,11 +20,20 @@ export default function WaterApp() {
         title: "Nie można obliczyć zapotrzebowania",
         message: "Waga jest wymagana!",
       });
-
       return;
     }
 
-    const water = (parseInt(weight, 10) * 35).toFixed(2);
+    const weightValue = parseFloat(weight);
+    if (Number.isNaN(weightValue) || weightValue <= 0) {
+      setMessage({
+        type: "error",
+        title: "Nie można obliczyć zapotrzebowania",
+        message: "Waga musi być liczbą większą od zera!",
+      });
+      return;
+    }
+
+    const water = (weightValue * 35).toFixed(2);
 
     setMessage({
       type: "success",
@@ -50,7 +59,10 @@ export default function WaterApp() {
             <Input placeholder="Waga" value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
 
-          <Button className="mt-[30px]" onClick={handleSubmit}>
+          <Button
+            className="mt-[30px] bg-blue-500 text-white hover:bg-blue-400"
+            onClick={handleSubmit}
+          >
             Oblicz zapotrzebowanie wody
           </Button>
 
