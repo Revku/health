@@ -1,64 +1,57 @@
 "use client";
 
+import Message from "@/components/message";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Message from "@/components/message";
 
-export default function BMIApp() {
+export default function WaterApp() {
   const [weight, setWeight] = useState<string>("");
-  const [height, setHeight] = useState<string>("");
   const [message, setMessage] = useState<{ type: string; title: string; message: string } | null>(
     null,
   );
 
   const handleSubmit = () => {
-    if (!weight || !height) {
+    if (!weight) {
       setMessage({
         type: "error",
-        title: "Nie można oblliczyć BMI",
-        message: "Waga i wzrost są wymagane!",
+        title: "Nie można obliczyć zapotrzebowania",
+        message: "Waga jest wymagana!",
       });
 
       return;
     }
 
-    const bmi = (parseInt(weight, 10) / (parseInt(height, 10) / 100) ** 2).toFixed(2);
+    const water = (parseInt(weight, 10) * 35).toFixed(2);
 
     setMessage({
       type: "success",
-      title: "Obliczono BMI",
-      message: `Twoje BMI wynosi: ${bmi}`,
+      title: "Obliczono zapotrzebowanie",
+      message: `Twoje zapotrzebowanie na wodę wynosi: ${water} ml`,
     });
   };
 
   return (
-    <div className="flex h-full items-center justify-center">
-      <Card className="w-full py-3">
+    <div>
+      <Card className="py-3">
         <CardHeader>
-          <CardTitle className="text-xl">Kalkulator BMI</CardTitle>
+          <CardTitle className="text-xl">Zapotrzebowanie wody</CardTitle>
           <CardDescription>
-            Oblicz swoje BMI, aby dowiedzieć się, czy Twoja waga jest prawidłowa.
+            Oblicz swoje zapotrzebowanie na wodę, aby dowiedzieć się, ile płynów powinieneś pić
+            codziennie.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <div className="formfield">
-            <Label>Wzrost</Label>
-            <Input
-              placeholder="Wzrost"
-              value={height}
-              onChange={(e) => setHeight(e.target.value)}
-            />
-          </div>
-          <div className="formfield">
             <Label>Waga</Label>
             <Input placeholder="Waga" value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
+
           <Button className="mt-[30px]" onClick={handleSubmit}>
-            Oblicz BMI
+            Oblicz zapotrzebowanie wody
           </Button>
 
           {message && <Message message={message} />}

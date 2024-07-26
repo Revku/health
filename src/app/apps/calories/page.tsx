@@ -1,0 +1,137 @@
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import Message from "@/components/message";
+
+export default function CaloriesApp() {
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [activity, setActivity] = useState("");
+  const [message, setMessage] = useState<{ type: string; title: string; message: string } | null>(
+    null,
+  );
+
+  const handleSubmit = () => {
+    if (!weight || !height || !age || !gender || !activity) {
+      setMessage({
+        type: "error",
+        title: "Nie można obliczyć zapotrzebowania",
+        message: "Wszystkie pola są wymagane!",
+      });
+
+      return;
+    }
+
+    if (gender === "male") {
+      const bmr =
+        88.362 +
+        13.397 * parseInt(weight, 10) +
+        4.799 * parseInt(height, 10) -
+        5.677 * parseInt(age, 10);
+      const tdee = bmr * parseFloat(activity);
+
+      setMessage({
+        type: "success",
+        title: "Obliczono zapotrzebowanie",
+        message: `Twoje zapotrzebowanie kaloryczne wynosi: ${tdee.toFixed(2)} kcal`,
+      });
+    } else {
+      const bmr =
+        447.593 +
+        9.247 * parseInt(weight, 10) +
+        3.098 * parseInt(height, 10) -
+        4.33 * parseInt(age, 10);
+      const tdee = bmr * parseFloat(activity);
+
+      setMessage({
+        type: "success",
+        title: "Obliczono zapotrzebowanie",
+        message: `Twoje zapotrzebowanie kaloryczne wynosi: ${tdee.toFixed(2)} kcal`,
+      });
+    }
+  };
+
+  return (
+    <div className="flex h-full items-center justify-center">
+      <Card className="w-fit py-3">
+        <CardHeader>
+          <CardTitle className="text-xl">Kalkulator Kalorii</CardTitle>
+          <CardDescription>
+            Oblicz swoje zapotrzebowanie kaloryczne, aby dowiedzieć się, ile kalorii powinieneś
+            spożywać.
+          </CardDescription>
+        </CardHeader>
+
+        <CardContent>
+          <div className="formfield">
+            <Label>Waga</Label>
+            <Input placeholder="Waga" value={weight} onChange={(e) => setWeight(e.target.value)} />
+          </div>
+          <div className="formfield">
+            <Label>Wzrost</Label>
+            <Input
+              placeholder="Wzrost"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+          </div>
+          <div className="formfield">
+            <Label>Wiek</Label>
+            <Input placeholder="Wiek" value={age} onChange={(e) => setAge(e.target.value)} />
+          </div>
+          <div className="formfield">
+            <Label>Płeć</Label>
+            <Select value={gender} onValueChange={(value) => setGender(value)}>
+              <SelectTrigger>
+                <SelectValue placeholder="Wybierz płeć" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="male">Mężczyzna</SelectItem>
+                  <SelectItem value="female">Kobieta</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="formfield">
+            <Label>Aktywność fizyczna</Label>
+            <Select value={activity} onValueChange={(value) => setActivity(value)}>
+              <SelectTrigger>
+                <SelectValue placeholder="Wybierz aktywność" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="1.2">Brak aktywności</SelectItem>
+                  <SelectItem value="1.375">Niska aktywność</SelectItem>
+                  <SelectItem value="1.55">Średnia aktywność</SelectItem>
+                  <SelectItem value="1.725">Wysoka aktywność</SelectItem>
+                  <SelectItem value="1.9">Bardzo wysoka aktywność</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <Button className="mt-[30px]" onClick={handleSubmit}>
+            Oblicz zapotrzebowanie
+          </Button>
+
+          {message && <Message message={message} />}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

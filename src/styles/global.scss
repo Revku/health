@@ -69,12 +69,8 @@
 }
 
 @layer components {
-  .navitem {
-    // @apply rounded-md bg-zinc-900 px-[10px] py-[6px] font-medium transition-colors duration-200 hover:bg-blue-700 lg:bg-transparent;
-  }
-
   .formfield {
-    @apply my-[15px];
+    @apply my-[20px] flex flex-col gap-[10px];
   }
 
   .contentGrid {

@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={montserrat.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div className="flex min-h-screen w-full items-start justify-center px-[30px]">
-            <div id="contentWrapper" className="contentGrid grid w-screen max-w-[1000px]">
+            <div id="contentWrapper" className="contentGrid grid w-screen max-w-[700px]">
               <Navigation />
               <div className="min-h-full">{children}</div>
               <Footer />
