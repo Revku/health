@@ -24,16 +24,25 @@ enum Mode {
 
 export default function SleepApp() {
   const [result, setResult] = useState<{ time: string; cycles: number; sleepTime: number }[]>([]);
+  const [error, setError] = useState("");
   const [time, setTime] = useState("");
 
   const handleCalculate = (mode: Mode) => {
+    setError("");
+    setResult([]);
+
+    if (!time) {
+      setError("Podaj godzinę!");
+      return;
+    }
+
     switch (mode) {
       case Mode.WAKEUP:
-        setResult(getWakeUpTime(time));
+        setResult(getSleepTime(time));
         break;
 
       case Mode.SLEEP:
-        setResult(getSleepTime(time));
+        setResult(getWakeUpTime(time));
         break;
 
       default:
@@ -67,6 +76,7 @@ export default function SleepApp() {
                 <div className="formfield mt-[30px]">
                   <Label>O której godzinie chcesz wstać?</Label>
                   <Input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
+                  {error && <p className="text-[14px] text-red-500">{error}</p>}
                 </div>
 
                 <Button
@@ -87,6 +97,7 @@ export default function SleepApp() {
                 <div className="formfield mt-[30px]">
                   <Label>O której godzinie chcesz się położyć?</Label>
                   <Input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
+                  {error && <p className="text-[14px] text-red-500">{error}</p>}
                 </div>
 
                 <Button
