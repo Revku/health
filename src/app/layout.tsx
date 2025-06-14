@@ -8,8 +8,8 @@ import Footer from "@/components/footer";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Health 2.0",
-  description: "Aplikacja do zarządzania zdrowiem",
+  title: "Health | Zadbaj o swoje zdrowie!",
+  description: "Health oferuje Ci zestaw przydatnych narzędzi, które pomogą Tobie w codziennym kontrolowaniu swojego stanu zdrowia.",
 };
 
 export default function RootLayout({
@@ -18,7 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pl">
+      <head>
+        <link rel="shortcut icon" href="logo-icon.svg" type="image/x-icon" />
+      </head>
       <body className={montserrat.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div className="flex min-h-screen w-full items-start justify-center px-[30px]">
