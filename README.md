@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="./src/assets/logo-text.svg" alt="Health logo" width="300"/>
+</p>
 
-## Getting Started
+# Health
 
-First, run the development server:
+Keep your health under control with Health! 🚀
+
+Health is a modern web application that offers a set of useful tools for daily health monitoring and self-care. All in one place, with a beautiful and intuitive interface.
+
+## ✨ Features
+
+- **BMI Calculator** – check if your weight is healthy
+- **Sleep Cycle Calculator** – calculate your optimal sleep time
+- **Calorie Calculator** – find out your daily calorie needs
+- **Water Intake Calculator** – see how much water you should drink
+- **WHR Calculator** – check your waist-to-hip ratio
+
+## 🖥️ Demo
+
+To run the project locally:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `src/app/` – main pages and subpages
+- `src/components/` – UI components
+- `src/config/apps.ts` – available tools configuration
+- `src/utils/` – utility functions
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Radix UI](https://www.radix-ui.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🤝 Contribute
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Want to help develop the app? Contributions are welcome!
 
-## Deploy on Vercel
+[![GitHub](https://img.shields.io/github/stars/Revku/health?style=social)](https://github.com/Revku/health)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature-name`)
+3. Make your changes and open a pull request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 📄 License
+
+This project is licensed under the MIT License.
