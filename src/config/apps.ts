@@ -4,7 +4,14 @@ import water from "@/assets/icons/water.svg";
 import whr from "@/assets/icons/whr.svg";
 import sleep from "@/assets/icons/sleep.svg";
 
-const apps = [
+export interface AppsItem {
+  name: string;
+  slug: string;
+  description: string;
+  icon: any;
+}
+
+const apps: AppsItem[] = [
   {
     name: "Kalkulator BMI",
     slug: "bmi",

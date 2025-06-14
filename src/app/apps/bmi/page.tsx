@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Message from "@/components/message";
+import calculateBmi from "@/utils/bmi";
 
 export default function BMIApp() {
   const [weight, setWeight] = useState<string>("");
@@ -41,7 +42,7 @@ export default function BMIApp() {
       return;
     }
 
-    const bmi = (weightValue / (heightValue / 100) ** 2).toFixed(2);
+    const bmi = calculateBmi(weightValue, heightValue);
     let bodyStatus = "";
 
     if (parseFloat(bmi) < 18.5) {
