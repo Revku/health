@@ -76,7 +76,7 @@ export default function CaloriesApp() {
       return;
     }
 
-    const calories = calculateCalories(gender as Gender, parseFloat(weight), parseFloat(height), parseInt(age), parseFloat(activity));
+    const calories = calculateCalories(gender as Gender, parseFloat(weight), parseFloat(height), parseInt(age, 10), parseFloat(activity));
     setMessage({
       type: "success",
       title: "Obliczono zapotrzebowanie",

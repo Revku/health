@@ -22,7 +22,7 @@ export default function Home() {
             </Button>
           </Link>
           <Link href="https://github.com/Revku/health" target="_blank">
-            <Button variant={"outline"} className="flex gap-2">
+            <Button variant="outline" className="flex gap-2">
               <GitHubLogoIcon /><span className="hidden md:inline-block">Współtwórz projekt</span>
             </Button>
           </Link>
