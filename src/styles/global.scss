@@ -62,6 +62,8 @@
 @layer base {
   * {
     @apply box-border border-border;
+    scroll-behavior: smooth;
+    scroll-padding-top: 30px;
   }
 
   body {
