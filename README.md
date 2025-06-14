@@ -49,7 +49,7 @@ Want to help develop the app? Contributions are welcome!
 [![GitHub](https://img.shields.io/github/stars/Revku/health?style=social)](https://github.com/Revku/health)
 
 1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature-name`)
+2. Create a new branch (`git checkout -b <type>/your-feature-name`) where `<type>` is `feature` or `bugfix` for example.
 3. Make your changes and open a pull request
 
 ## 📄 License
