@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Message from "@/components/message";
+import calculateCalories from "@/utils/calories";
+import { Gender } from "@/types/enums";
 
 export default function CaloriesApp() {
   const [weight, setWeight] = useState("");
@@ -74,33 +76,12 @@ export default function CaloriesApp() {
       return;
     }
 
-    if (gender === "male") {
-      const bmr =
-        88.362 +
-        13.397 * parseInt(weight, 10) +
-        4.799 * parseInt(height, 10) -
-        5.677 * parseInt(age, 10);
-      const tdee = bmr * parseFloat(activity);
-
-      setMessage({
-        type: "success",
-        title: "Obliczono zapotrzebowanie",
-        message: `Twoje zapotrzebowanie kaloryczne wynosi: ${tdee.toFixed(2)} kcal`,
-      });
-    } else {
-      const bmr =
-        447.593 +
-        9.247 * parseInt(weight, 10) +
-        3.098 * parseInt(height, 10) -
-        4.33 * parseInt(age, 10);
-      const tdee = bmr * parseFloat(activity);
-
-      setMessage({
-        type: "success",
-        title: "Obliczono zapotrzebowanie",
-        message: `Twoje zapotrzebowanie kaloryczne wynosi: ${tdee.toFixed(2)} kcal`,
-      });
-    }
+    const calories = calculateCalories(gender as Gender, parseFloat(weight), parseFloat(height), parseInt(age), parseFloat(activity));
+    setMessage({
+      type: "success",
+      title: "Obliczono zapotrzebowanie",
+      message: `Twoje zapotrzebowanie kaloryczne wynosi: ${calories} kcal`,
+    });
   };
 
   return (
