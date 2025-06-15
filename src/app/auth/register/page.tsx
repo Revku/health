@@ -80,13 +80,16 @@ export default function RegisterPage() {
                 id="email"
                 type="email"
                 placeholder="jan.kowalski@example.com"
-                {...register('email', {
+                name={register('email', {
                   required: 'Email jest wymagany',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                     message: 'Wprowadź poprawny adres email'
                   }
-                })}
+                }).name}
+                onChange={register('email').onChange}
+                onBlur={register('email').onBlur}
+                ref={register('email').ref}
                 className={`${errors.email ? 'border-red-500' : ''} h-10 focus:border-blue-500 focus:ring-blue-500`}
               />
               {errors.email && (
@@ -98,13 +101,16 @@ export default function RegisterPage() {
               <Input
                 id="password"
                 type="password"
-                {...register('password', {
+                name={register('password', {
                   required: 'Hasło jest wymagane',
                   minLength: {
                     value: 6,
                     message: 'Hasło musi mieć co najmniej 6 znaków'
                   }
-                })}
+                }).name}
+                onChange={register('password').onChange}
+                onBlur={register('password').onBlur}
+                ref={register('password').ref}
                 className={`${errors.password ? 'border-red-500' : ''} h-10 focus:border-blue-500 focus:ring-blue-500`}
               />
               {errors.password && (
@@ -116,10 +122,13 @@ export default function RegisterPage() {
               <Input
                 id="confirmPassword"
                 type="password"
-                {...register('confirmPassword', {
+                name={register('confirmPassword', {
                   required: 'Potwierdzenie hasła jest wymagane',
                   validate: value => value === password || 'Hasła nie są identyczne'
-                })}
+                }).name}
+                onChange={register('confirmPassword').onChange}
+                onBlur={register('confirmPassword').onBlur}
+                ref={register('confirmPassword').ref}
                 className={`${errors.confirmPassword ? 'border-red-500' : ''} h-10 focus:border-blue-500 focus:ring-blue-500`}
               />
               {errors.confirmPassword && (
