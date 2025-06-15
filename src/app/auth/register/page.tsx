@@ -52,7 +52,6 @@ export default function RegisterPage() {
       }
 
       setError(errorMessage);
-      console.error('Błąd rejestracji:', err);
     } finally {
       setIsLoading(false);
     }

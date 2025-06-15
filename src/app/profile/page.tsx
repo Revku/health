@@ -30,12 +30,8 @@ export default function ProfilePage() {
   }, [user, router]);
 
   const handleLogout = async () => {
-    try {
-      await logOut();
-      router.push('/auth/login');
-    } catch (error) {
-      console.error('Błąd wylogowania:', error);
-    }
+    await logOut();
+    router.push('/auth/login');
   };
 
   if (!user) {
