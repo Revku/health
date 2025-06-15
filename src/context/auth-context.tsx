@@ -3,12 +3,13 @@
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react';
 
 import { auth } from '@/utils/firebase';
-import { onAuthStateChanged, User, signInWithEmailAndPassword } from 'firebase/auth';
+import { onAuthStateChanged, User, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 type AuthContextType = {
   user: User | null;
   logIn: (email: string, password: string) => Promise<void>;
   logOut: () => Promise<void>;
+  createAccount: (email: string, password: string) => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -43,8 +44,17 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     await auth.signOut();
   };
 
+  const createAccount = async (email: string, password: string) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      setUser(userCredential.user);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return (
-      <AuthContext.Provider value={{ user, logOut, logIn }}>{children}</AuthContext.Provider>
+      <AuthContext.Provider value={{ user, logOut, logIn, createAccount }}>{children}</AuthContext.Provider>
   );
 };
 
