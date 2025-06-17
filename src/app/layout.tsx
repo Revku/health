@@ -4,6 +4,7 @@ import "@/styles/global.scss";
 import ThemeProvider from "@/components/theme-provider";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import {AuthProvider} from "@/context/auth-context";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -19,11 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
-      <head>
-        <link rel="shortcut icon" href="logo-icon.svg" type="image/x-icon" />
-      </head>
-      <body className={montserrat.className}>
+      <AuthProvider>
+        <html lang="pl">
+        <head>
+          <link rel="shortcut icon" href="logo-icon.svg" type="image/x-icon" />
+        </head>
+        <body className={montserrat.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div className="flex min-h-screen w-full items-start justify-center px-[30px]">
             <div id="contentWrapper" className="contentGrid grid w-screen max-w-[700px]">
@@ -33,7 +35,9 @@ export default function RootLayout({
             </div>
           </div>
         </ThemeProvider>
-      </body>
-    </html>
+        </body>
+        </html>
+      </AuthProvider>
+
   );
 }

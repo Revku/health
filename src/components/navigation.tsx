@@ -6,7 +6,7 @@ import React from "react";
 import logo from "@/assets/logo-icon.svg";
 import Link from "next/link";
 
-import { HomeIcon, TokensIcon } from "@radix-ui/react-icons";
+import { HomeIcon, TokensIcon, PersonIcon } from "@radix-ui/react-icons";
 
 import {
   DropdownMenu,
@@ -34,6 +34,12 @@ export default function Navigation() {
           </Button>
         </Link>
 
+        <Link href="/auth/login">
+          <Button variant="outline" size="icon">
+            <PersonIcon className="h-4 w-4" />
+          </Button>
+        </Link>
+
         <ThemeSwitcher />
 
         <DropdownMenu>
@@ -56,7 +62,9 @@ export default function Navigation() {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+
       </div>
     </div>
   );
 }
+
