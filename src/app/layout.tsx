@@ -9,7 +9,8 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Health | Zadbaj o swoje zdrowie!",
-  description: "Health oferuje Ci zestaw przydatnych narzędzi, które pomogą Tobie w codziennym kontrolowaniu swojego stanu zdrowia.",
+  description:
+    "Health oferuje Ci zestaw przydatnych narzędzi, które pomogą Tobie w codziennym kontrolowaniu swojego stanu zdrowia.",
 };
 
 export default function RootLayout({
@@ -27,7 +28,7 @@ export default function RootLayout({
           <div className="flex min-h-screen w-full items-start justify-center px-[30px]">
             <div id="contentWrapper" className="contentGrid grid w-screen max-w-[700px]">
               <Navigation />
-              <div className="min-h-full">{children}</div>
+              <div>{children}</div>
               <Footer />
             </div>
           </div>
